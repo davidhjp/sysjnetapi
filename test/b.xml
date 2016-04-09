@@ -1,0 +1,16 @@
+<System xmlns="http://systemjtechnology.com">
+  <!--<Interconnection>-->
+  <!--<Link Type="Destination">-->
+  <!--Interface example: -->
+  <!--<Interface SubSystem="SS1" Class="com.systemj.ipc.TCPIPInterface" Args="127.0.0.1:1100"/>-->
+  <!--<Interface SubSystem="SS2" Class="com.systemj.ipc.TCPIPInterface" Args="127.0.0.1:1200"/>-->
+  <!--.....-->
+  <!--</Link>-->
+  <!--</Interconnection>-->
+  <SubSystem Name="SS1" Local="true">
+    <ClockDomain Name="Simul" Class="CD2">
+<!--      <iSignal Name="O" Class="com.systemj.ipc.TCPReceiver" IP="127.0.0.1" Port="2001" />-->
+			<iSignal Name="O" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="2001" />
+    </ClockDomain>
+  </SubSystem>
+</System>

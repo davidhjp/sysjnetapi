@@ -1,0 +1,8 @@
+<System xmlns="http://systemjtechnology.com">
+  <SubSystem Name="SS1" Local="true">
+    <ClockDomain Name="CD" Class="CD">
+      <iSignal Name="I" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="2000" />
+      <oSignal Name="O" Class="com.systemj.ipc.SimpleClient" To="Simul.O" IP="127.0.0.1" Port="2001" />
+    </ClockDomain>
+  </SubSystem>
+</System>

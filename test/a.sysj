@@ -1,0 +1,21 @@
+CD(output int signal O; input String signal I;)->{
+	{
+		loop{
+			await(I);
+			System.out.println("Signal received "+#I);
+		}
+	}
+	||
+	{
+//    int i = 0;
+		loop{
+			trap(T){
+			{sustain O(1);
+			} || {waitl(1s); exit(T);}
+			}
+			System.out.println(""+#I);
+			waitl(1s);
+			pause;
+		}
+	}
+}

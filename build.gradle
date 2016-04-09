@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+defaultTasks 'jar'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+}
+
+task buildInfo {
+	def cmd = 'git rev-parse --short HEAD'
+	try{
+		def proc = cmd.execute()
+		project.version = 'SNAPSHOT-' + proc.text.trim()
+	} catch (e) { 
+		project.version = 'SNAPSHOT-unspecified'
+	}
+}
+
+javadoc {
+	options.addStringOption("link", "http://docs.oracle.com/javase/8/docs/api")
+	options.addStringOption("Xdoclint:none", "-Xdoclint:none")
+}

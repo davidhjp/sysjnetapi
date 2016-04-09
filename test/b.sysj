@@ -1,0 +1,6 @@
+CD2(input int signal O;)->{
+	loop{
+		await(O);
+		System.out.println(#O);
+	}
+}
