@@ -2,7 +2,6 @@ package com.systemj.netapi;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.UnknownHostException;
 
 /**
  * <p>

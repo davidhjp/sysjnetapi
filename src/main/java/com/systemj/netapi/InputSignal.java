@@ -9,13 +9,17 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 import com.systemj.util.Tuple;
 
+/**
+ * A class that implements a signal server to accept any incoming
+ * requests from {@link com.systemj.ipc.GenericSignalSender}.
+ *
+ */
 public abstract class InputSignal implements Runnable, Closeable {
 	private String ip;
 	private int port;

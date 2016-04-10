@@ -4,13 +4,17 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
+/**
+ * A class that implements a signal client, which connects to the server
+ * created by {@link com.systemj.ipc.GenericSignalReceiver}.
+ *
+ */
 public abstract class OutputSignal implements Closeable {
 	private String ip;
 	private int port;

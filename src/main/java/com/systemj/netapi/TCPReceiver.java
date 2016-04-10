@@ -16,10 +16,12 @@ import com.systemj.util.Tuple;
  * 
  * <pre>
  * {@code
+ * // Assuming the output signal in the LCF is specified as follows:
+ * // <oSignal Name="Out" Class="com.systemj.ipc.TCPSender" IP="127.0.0.1" Port="2000"/>
  * TCPReceiver s = new TCPReceiver("127.0.0.1", 2000);
  * 
- * // Sets a Consumer that prints the status and value of the signal O emitted from the clock-domain CD1
- * s.setConsumer("CD1", "O", (status, value) -> System.out.println("Received : "+status+" "+value)); 
+ * // Sets a Consumer that prints the status and the value of the incoming signal
+ * s.setConsumer((status, value) -> System.out.println("Received : " + status + " " + value));
  * s.close(); // close when necessary
  * }
  * </pre>
@@ -30,12 +32,12 @@ public class TCPReceiver extends InputSignal {
 
 	/**
 	 * Sets a {@link java.util.function.BiConsumer BiConsumer} which
-	 * will be applied whenever the status of the output signal for
-	 * {@code sigName} is updated by the clock-domain {@code cdName}.
+	 * will accept a status and a value of the incoming signal.
 	 * 
 	 * @param c
 	 *            the {@link java.util.function.BiConsumer BiConsumer}
-	 *            that accepts both a status and a value of this signal.
+	 *            that accepts both a status and a value of the incoming
+	 *            signal.
 	 */
 	public synchronized final void setConsumer(BiConsumer<Boolean, Object> c) {
 		bc = c;

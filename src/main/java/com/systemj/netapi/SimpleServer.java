@@ -18,10 +18,12 @@ import com.systemj.util.Tuple;
  * 
  * <pre>
  * {@code
+ * // Assuming the output signal in the LCF is specified as follows:
+ * // <oSignal Name="Out" To="CD1.I" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="2000"/>
  * SimpleServer s = new SimpleServer("127.0.0.1", 2000);
  * 
- * // Adding a Consumer that prints status and value of the signal O emitted from the clock-domain CD1
- * s.addConsumer("CD1", "O", (status, value) -> System.out.println("Received : "+status+" "+value)); 
+ * // Adding a Consumer for the input signal "I" of the clock-domain "CD1", which are specified by the "To" attribute.
+ * s.addConsumer("CD1", "I", (status, value) -> System.out.println("Received : " + status + " " + value));
  * s.close(); // close when necessary
  * }
  * </pre>
@@ -31,20 +33,20 @@ public class SimpleServer extends InputSignal {
 	private Map<String, BiConsumer<Boolean, Object>> map = new HashMap<>();
 
 	/**
-	 * Adds a {@link java.util.function.BiConsumer BiConsumer} which
-	 * will be invoked whenever the status of the output signal for
-	 * {@code sigName} is updated by the clock-domain {@code cdName}.
+	 * Adds a {@link java.util.function.BiConsumer BiConsumer} for the
+	 * input signal {@code sigName} of the clock-domain {@code cdName}.
+	 * The {@link java.util.function.BiConsumer BiConsumer} will accept
+	 * an updated status and a value of the signal which are specified
+	 * by the {@code To} attribute of the
+	 * {@link com.systemj.ipc.SimpleClient}.
 	 * 
 	 * @param cdName
-	 *            the name of the clock-domain that emits the output
-	 *            signal.
+	 *            the receiving clock-domain name.
 	 * @param sigName
-	 *            the name of the output signal which this Consumer will
-	 *            listen to.
+	 *            the input signal name.
 	 * @param c
 	 *            the {@link java.util.function.BiConsumer BiConsumer}
-	 *            that accepts both a status and a value of the output
-	 *            signal {@code sigName}.
+	 *            that accepts both a status and a value of the signal.
 	 */
 	public synchronized final void addConsumer(String cdName, String sigName, BiConsumer<Boolean, Object> c) {
 		map.put(cdName + "." + sigName, c);
