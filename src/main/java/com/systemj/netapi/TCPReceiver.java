@@ -52,7 +52,7 @@ public class TCPReceiver extends InputSignal {
 	 * 
 	 * @param ip
 	 *            IP address of the server created by this
-	 *            {@link #TCPReceiver}.
+	 *            {@link TCPReceiver}.
 	 * @param port
 	 *            the port number of the server.
 	 */
